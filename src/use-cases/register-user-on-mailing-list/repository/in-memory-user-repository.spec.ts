@@ -24,4 +24,16 @@ describe('In memoru User repository', () => {
 
     expect(user.name).toBe(name)
   })
+
+  test('should return all users in the repository', async () => {
+    const users: UserData[] = [
+      { name: 'john doe', email: 'john@doe.com' },
+      { name: 'john doe 2', email: 'john2@doe.com' }
+    ]
+    const userRepo = new InMemoryUserRepository(users)
+
+    const returnedUsers = await userRepo.findAllUsers()
+
+    expect(returnedUsers.length).toBe(users.length)
+  })
 })
