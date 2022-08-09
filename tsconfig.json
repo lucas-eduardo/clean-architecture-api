@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "CommonJS",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@entities/*": [
+        "src/entities/*"
+      ],
+      "@external/*": [
+        "src/external/*"
+      ],
+      "@main/*": [
+        "src/main/*"
+      ],
+      "@presentation/*": [
+        "src/presentation/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@use-cases/*": [
+        "src/use-cases/*"
+      ],
+    }
+  }
+}

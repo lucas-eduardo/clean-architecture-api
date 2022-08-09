@@ -1,0 +1,31 @@
+{
+  "name": "clean-architecture",
+  "version": "1.0.0",
+  "main": "dist/main/server.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig-build.json"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/module-alias": "^2.0.1",
+    "@types/node": "^18.6.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "module-alias": "^2.2.2",
+    "winston": "^3.8.1"
+  },
+  "_moduleAliases": {
+    "@": "dist",
+    "@entities": "dist/entities",
+    "@external": "dist/external",
+    "@main": "dist/main",
+    "@presentation": "dist/presentation",
+    "@shared": "dist/shared",
+    "@use-cases": "dist/use-cases"
+  }
+}
