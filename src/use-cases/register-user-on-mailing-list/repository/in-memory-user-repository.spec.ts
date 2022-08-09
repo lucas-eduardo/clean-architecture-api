@@ -10,4 +10,18 @@ describe('In memoru User repository', () => {
 
     expect(user).toBeNull()
   })
+
+  test('should return user if it is found in the repository', async () => {
+    const users: UserData[] = []
+    const userRepo = new InMemoryUserRepository(users)
+
+    const name = 'john doe'
+    const email = 'john@doe.com'
+
+    await userRepo.add({ name, email })
+
+    const user = await userRepo.findUserByEmail('john@doe.com')
+
+    expect(user.name).toBe(name)
+  })
 })
