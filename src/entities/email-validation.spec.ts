@@ -48,4 +48,10 @@ describe('Email validation', () => {
 
     expect(Email.validate(email)).toBeFalsy()
   })
+
+  test('should not accept empty domain part', () => {
+    const email = 'john@'
+
+    expect(Email.validate(email)).toBeFalsy()
+  })
 })
