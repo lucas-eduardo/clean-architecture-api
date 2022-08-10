@@ -14,7 +14,7 @@ describe('Register user on mailing list use case', () => {
     const name = 'john doe'
     const email = 'john@doe.com'
 
-    const response = await useCase.registerUserOnMailingList({ name, email })
+    const response = await useCase.perform({ name, email })
 
     const user = await repo.findUserByEmail(email)
 
@@ -31,7 +31,7 @@ describe('Register user on mailing list use case', () => {
     const name = 'john doe'
     const invalidEmail = 'invalid_email'
 
-    const response = (await useCase.registerUserOnMailingList({ name, email: invalidEmail })).value as Error
+    const response = (await useCase.perform({ name, email: invalidEmail })).value as Error
 
     const user = await repo.findUserByEmail(invalidEmail)
 
@@ -48,7 +48,7 @@ describe('Register user on mailing list use case', () => {
     const invalidName = ''
     const email = 'john@doe.com'
 
-    const response = (await useCase.registerUserOnMailingList({ name: invalidName, email })).value as Error
+    const response = (await useCase.perform({ name: invalidName, email })).value as Error
 
     const user = await repo.findUserByEmail(email)
 
