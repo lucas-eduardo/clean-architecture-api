@@ -5,7 +5,10 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig-build.json",
-    "test": "jest"
+    "test:unit": "jest --passWithNoTests --watch --runInBand -c jest-unit.config.ts",
+    "test:integration": "jest --passWithNoTests --watch --runInBand -c jest-integration.config.ts",
+    "test:staged": "jest --passWithNoTests --runInBand --findRelatedTests",
+    "test:ci": "jest --passWithNoTests --runInBand --coverage"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
