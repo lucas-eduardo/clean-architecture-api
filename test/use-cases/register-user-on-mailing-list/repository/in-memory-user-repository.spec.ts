@@ -1,4 +1,4 @@
-import { UserData } from '@/entities/user-data'
+import { UserData } from '@/entities'
 
 import { InMemoryUserRepository } from './in-memory-user-repository'
 

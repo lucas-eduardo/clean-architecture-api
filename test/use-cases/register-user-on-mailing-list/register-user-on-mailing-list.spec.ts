@@ -1,6 +1,6 @@
-import { UserData } from '@/entities/user-data'
-import { UserRepository } from '@/use-cases/register-user-on-mailing-list/ports/user-repository'
-import { RegisterUserOnMailingList } from '@/use-cases/register-user-on-mailing-list/register-user-on-mailing-list'
+import { UserData } from '@/entities'
+import { RegisterUserOnMailingList } from '@/use-cases/register-user-on-mailing-list'
+import { UserRepository } from '@/use-cases/register-user-on-mailing-list/ports'
 
 import { InMemoryUserRepository } from './repository/in-memory-user-repository'
 

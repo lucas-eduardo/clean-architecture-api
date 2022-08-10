@@ -39,12 +39,6 @@
     "winston": "^3.8.1"
   },
   "_moduleAliases": {
-    "@": "dist",
-    "@entities": "dist/entities",
-    "@external": "dist/external",
-    "@main": "dist/main",
-    "@presentation": "dist/presentation",
-    "@shared": "dist/shared",
-    "@use-cases": "dist/use-cases"
+    "@": "dist"
   }
 }

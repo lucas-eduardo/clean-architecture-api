@@ -9,25 +9,7 @@
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "@entities/*": [
-        "src/entities/*"
-      ],
-      "@external/*": [
-        "src/external/*"
-      ],
-      "@main/*": [
-        "src/main/*"
-      ],
-      "@presentation/*": [
-        "src/presentation/*"
-      ],
-      "@shared/*": [
-        "src/shared/*"
-      ],
-      "@use-cases/*": [
-        "src/use-cases/*"
-      ],
+      ]
     }
   }
 }
