@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 
-import { Either, left, Left, Right, right } from '@/shared'
+import { User } from '@/entities'
+import { Either, left, right } from '@/shared'
 import { MailServiceError } from '@/use-cases/errors'
 import { SendEmail } from '@/use-cases/send-email'
 import { EmailOptions, EmailService } from '@/use-cases/send-email/ports'
@@ -38,7 +39,7 @@ class MailServiceStub implements EmailService {
 }
 
 class MailServiceErrorStub implements EmailService {
-  async send (emailOptions: EmailOptions): Promise<Either<MailServiceError, EmailOptions>> {
+  async send (_: EmailOptions): Promise<Either<MailServiceError, EmailOptions>> {
     return left(new MailServiceError())
   }
 }
@@ -47,24 +48,17 @@ describe('Send email to user', () => {
   test('should email user with valid name and email address', async () => {
     const mailServiceStub = new MailServiceStub()
     const useCase = new SendEmail(mailOptions, mailServiceStub)
-    const response = await useCase.perform({ name: toName, email: toEmail })
+    const user = User.create({ name: toName, email: toEmail }).value as User
+    const response = (await useCase.perform(user)).value as EmailOptions
 
-    expect(response).toBeInstanceOf(Right)
-  })
-
-  test('should not try email with invalid email address', async () => {
-    const mailServiceStub = new MailServiceStub()
-    const useCase = new SendEmail(mailOptions, mailServiceStub)
-    const invalidEmail = 'invalid_email'
-    const response = await useCase.perform({ name: toName, email: invalidEmail })
-
-    expect(response).toBeInstanceOf(Left)
+    expect(response.to).toEqual(`${toName} <${toEmail}>`)
   })
 
   test('should return error when email service fails', async () => {
     const mailServiceErrorStub = new MailServiceErrorStub()
     const useCase = new SendEmail(mailOptions, mailServiceErrorStub)
-    const response = await useCase.perform({ name: toName, email: toEmail })
+    const user = User.create({ name: toName, email: toEmail }).value as User
+    const response = await useCase.perform(user)
 
     expect(response.value).toBeInstanceOf(MailServiceError)
   })

@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 
-import { User, UserData } from '@/entities'
+import { UserData } from '@/entities'
 import { Either, right } from '@/shared'
 import { MailServiceError } from '@/use-cases/errors'
 import { RegisterAndSendEmail } from '@/use-cases/register-and-send-email'
@@ -46,7 +46,7 @@ describe('Register and send email to user', () => {
     }
   }
 
-  test('should add user with complete data to mailing list', async () => {
+  test('should register user and send him/her an email with valid data', async () => {
     const users: UserData[] = []
 
     const repo = new InMemoryUserRepository(users)
@@ -60,16 +60,16 @@ describe('Register and send email to user', () => {
     const name = 'john doe'
     const email = 'john@doe.com'
 
-    const response = (await registerAndSendEmailUseCase.perform({ name, email })).value as User
+    const response = (await registerAndSendEmailUseCase.perform({ name, email })).value as UserData
 
     const user = await repo.findUserByEmail(email)
 
     expect(user.name).toBe(name)
-    expect(response.name.value).toBe(name)
+    expect(response.name).toBe(name)
     expect(mailServiceMock.timesSendWasCalled).toEqual(1)
   })
 
-  test('should not add user with invalid email to mailing list', async () => {
+  test('should not register user and send him/her an email with invalid email', async () => {
     const users: UserData[] = []
 
     const repo = new InMemoryUserRepository(users)
@@ -88,7 +88,7 @@ describe('Register and send email to user', () => {
     expect(response.name).toEqual('InvalidEmailError')
   })
 
-  test('should not add user with invalid name to mailing list', async () => {
+  test('should not register user and send him/her an email with invalid name', async () => {
     const users: UserData[] = []
 
     const repo = new InMemoryUserRepository(users)

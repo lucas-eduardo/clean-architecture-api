@@ -16,26 +16,23 @@ export class RegisterAndSendEmail implements UseCase {
     this.sendEmail = sendEmail
   }
 
-  async perform (request: UserData): Promise<Either<InvalidNameError | InvalidEmailError | MailServiceError, User>> {
+  async perform (request: UserData): Promise<Either<InvalidNameError | InvalidEmailError | MailServiceError, UserData>> {
     const userOrError = User.create(request)
 
     if (userOrError.isLeft()) {
       return left(userOrError.value)
     }
 
-    const userData = {
-      name: userOrError.value.name.value,
-      email: userOrError.value.email.value
-    }
+    const user = userOrError.value
 
-    await this.registerUserOnMailingList.perform(userData)
+    await this.registerUserOnMailingList.perform(user)
 
-    const result = await this.sendEmail.perform(userData)
+    const result = await this.sendEmail.perform(user)
 
     if (result.isLeft()) {
       return left(result.value)
     }
 
-    return right(userOrError.value)
+    return right({ name: user.name.value, email: user.email.value })
   }
 }
