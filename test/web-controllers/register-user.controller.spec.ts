@@ -4,11 +4,10 @@ import { InvalidEmailError, InvalidNameError } from '@/entities/errors'
 import { UseCase } from '@/use-cases/ports'
 import { RegisterUserOnMailingList } from '@/use-cases/register-user-on-mailing-list'
 import { UserRepository } from '@/use-cases/register-user-on-mailing-list/ports'
+import { InMemoryUserRepository } from '@/use-cases/register-user-on-mailing-list/repository'
 import { RegisterUserController } from '@/web-controllers'
 import { MissingParamError } from '@/web-controllers/errors'
 import { HttpRequest } from '@/web-controllers/ports'
-
-import { InMemoryUserRepository } from '../use-cases/register-user-on-mailing-list/repository'
 
 describe('Register user web controller', () => {
   const users: UserData[] = []
