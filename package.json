@@ -12,6 +12,7 @@
     "test:ci": "jest --passWithNoTests --runInBand --coverage"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.6",
     "@types/module-alias": "^2.0.1",
