@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
 import { adaptRoute } from '@/main/adapters'
-import { makeRegisterUserController } from '@/main/factories'
+import { makeRegisterSendEmailController } from '@/main/factories'
 
 export default (router: Router): void => {
-  router.post('/register', adaptRoute(makeRegisterUserController()))
+  router.post('/register', adaptRoute(makeRegisterSendEmailController()))
 }
