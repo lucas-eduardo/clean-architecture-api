@@ -3,7 +3,7 @@ import { UseCase } from '@/use-cases/ports'
 
 import { MissingParamError } from './errors'
 import { HttpRequest, HttpResponse } from './ports'
-import { badRequest, created, serverError } from './util'
+import { badRequest, ok, serverError } from './util'
 
 export class RegisterAndSendEmailController {
   private readonly useCase: UseCase
@@ -29,7 +29,7 @@ export class RegisterAndSendEmailController {
         return badRequest(response.value)
       }
 
-      return created(response.value)
+      return ok(response.value)
     } catch (error) {
       return serverError(error)
     }
