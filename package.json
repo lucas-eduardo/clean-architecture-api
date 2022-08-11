@@ -4,6 +4,7 @@
   "main": "dist/main/server.js",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "test:unit": "jest --passWithNoTests --watch --runInBand -c jest-unit.config.ts",
     "test:integration": "jest --passWithNoTests --watch --runInBand -c jest-integration.config.ts",
