@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    networks:
+      - mongodb
+
+networks: 
+    mongodb:
+      driver: bridge
