@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 
-import { Either, Right, right } from '@/shared'
+import { Either, Left, Right, right } from '@/shared'
 import { MailServiceError } from '@/use-cases/errors'
 import { SendEmail } from '@/use-cases/send-email'
 import { EmailOptions, EmailService } from '@/use-cases/send-email/ports'
@@ -44,5 +44,14 @@ describe('Send email to user', () => {
     const response = await useCase.perform({ name: toName, email: toEmail })
 
     expect(response).toBeInstanceOf(Right)
+  })
+
+  test('should not try email with invalid email address', async () => {
+    const mailServiceStub = new MailServiceStub()
+    const useCase = new SendEmail(mailOptions, mailServiceStub)
+    const invalidEmail = 'invalid_email'
+    const response = await useCase.perform({ name: toName, email: invalidEmail })
+
+    expect(response).toBeInstanceOf(Left)
   })
 })
