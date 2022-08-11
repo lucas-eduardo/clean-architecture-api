@@ -817,6 +817,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.5.tgz#06caea822caf9e59d5034b695186ee74154d2802"
   integrity sha512-Xjt5ZGUa5WusGZJ4WJPbOT8QOqp6nDynVFRKcUt32bOgvXEoc6o085WNkYTMO7ifAj2isEfQQ2cseE+wT6jsRw==
 
+"@types/nodemailer@^6.4.5":
+  version "6.4.5"
+  resolved "https://registry.yarnpkg.com/@types/nodemailer/-/nodemailer-6.4.5.tgz#09011ac73259245475d1688e4ba101860567dc39"
+  integrity sha512-zuP3nBRQHI6M2PkXnGGy1Ww4VB+MyYHGgnfV2T+JR9KLkeWqPJuyVUgLpKXuFnA/b7pZaIDFh2sV4759B7jK1g==
+  dependencies:
+    "@types/node" "*"
+
 "@types/prettier@^2.1.5":
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.0.tgz#ea03e9f0376a4446f44797ca19d9c46c36e352dc"
